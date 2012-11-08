@@ -12,8 +12,8 @@ namespace CaddyExportLite
     public class Worker
     {
         private DatabaseConnection aDatabaseConnection;
-        private ExportListing aExportListing;
-        private MYOBExportString aMYOBExportString;
+        private IExportListing aExportListing;
+        private IMYOBExportString aMYOBExportString;
         private ConnectionManager aConnectionManager;
         private IHubContext theHubContext;
         private Timer aTimer;
@@ -32,23 +32,38 @@ namespace CaddyExportLite
 
             aTimer = new Timer(1000);
             aTimer.AutoReset = true;
-            aTimer.Elapsed += new ElapsedEventHandler(DoWork);
+            aTimer.Elapsed += new ElapsedEventHandler(TimerElapsed);
             aTimer.Start();
         }
-
-        private void DoWork(object source, ElapsedEventArgs e)
+        private void TimerElapsed(object source, ElapsedEventArgs e)
         {
-            var ExportListing = aExportListing.FetchExportListing();
+            DoWork(this.aConnectionManager, this.aExportListing, this.aMYOBExportString, this.theHubContext);
+        }
 
-            foreach (var ExportRecord in ExportListing)
+        public void DoWork( ConnectionManager aConnectionManager,
+                            IExportListing aExportListing, 
+                            IMYOBExportString aMYOBExportString,
+                            IHubContext theHubContext)
+        {
+            var ItemsToExport = aExportListing.FetchExportListing();
+
+            foreach (var ExportRecord in ItemsToExport)
             {
-                if (ExportRecord.ExportID != null)
+                if (ExportRecord.taskid != null && ExportRecord.ClientGUID != null)
                 {
-                    var ExportStrings = aMYOBExportString.FetchExportStringsForID((int)ExportRecord.ExportID);
-                    if (ExportRecord.ClientGUID != null)
+                    if (aConnectionManager.IsClientGUIDConnected((string)ExportRecord.ClientGUID))
                     {
-                        foreach (var SingleExportString in ExportStrings)
-                            theHubContext.Clients[ExportRecord.ClientGUID].addMessage(SingleExportString);
+                        var ExportStringsForClient = aMYOBExportString.FetchExportStringsForID((int)ExportRecord.taskid);
+
+                        foreach (var SingleExportString in ExportStringsForClient)
+                        {
+                            //theHubContext.Clients[ExportRecord.ClientGUID].addMessage(SingleExportString);
+                            Console.WriteLine("ClientGUID: {0}, ExportID: {1}, Export String: {2}", ExportRecord.ClientGUID, ExportRecord.ExportID, SingleExportString);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("ClientGUID: {0} is not connected.", ExportRecord.ClientGUID);
                     }
                 }
             }

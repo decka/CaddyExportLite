@@ -21,7 +21,7 @@ namespace CaddyExportLite
 
         public void RemoveConnection(string connectionID)
         {
-            var mapping = GetConnectionMapping(connectionID);
+            var mapping = GetConnectionMappingFromConnectionID(connectionID);
             if (mapping != null)
                 ConnectionMappings.Remove(mapping);
         }
@@ -43,13 +43,23 @@ namespace CaddyExportLite
 
         public void SetClientGUID(string connectionID, string clientGUID)
         {
-            var mapping = GetConnectionMapping(connectionID);
+            var mapping = GetConnectionMappingFromConnectionID(connectionID);
             mapping.ClientGUID = clientGUID;
         }
 
-        public ConnectionMapping GetConnectionMapping(string connectionID)
+        public ConnectionMapping GetConnectionMappingFromConnectionID(string connectionID)
         {
             return ConnectionMappings.Find(p => p.ConnectionID == connectionID);
+        }
+
+        public ConnectionMapping GetConnectionMappingFromClientGUID(string clientGUID)
+        {
+            return ConnectionMappings.Find(p => p.ClientGUID == clientGUID);
+        }
+
+        public bool IsClientGUIDConnected(string clientGUID)
+        {
+            return ConnectionMappings.Exists(p => p.ClientGUID == clientGUID);
         }
     }
 }

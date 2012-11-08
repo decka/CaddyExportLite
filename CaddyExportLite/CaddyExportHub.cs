@@ -35,7 +35,7 @@ namespace CaddyExportLite
             return Task.Factory.StartNew(
                 () =>
                     {
-                        var mapping = theConnectionManager.GetConnectionMapping(Context.ConnectionId);
+                        var mapping = theConnectionManager.GetConnectionMappingFromConnectionID(Context.ConnectionId);
                         if (mapping == null)
                             theConnectionManager.AddConnection(Context.ConnectionId);
                     }

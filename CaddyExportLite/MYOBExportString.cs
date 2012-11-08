@@ -7,7 +7,12 @@ using Dapper;
 
 namespace CaddyExportLite
 {
-    public class MYOBExportString
+    public interface IMYOBExportString
+    {
+        IEnumerable<string> FetchExportStringsForID(int ID);
+    }
+
+    public class MYOBExportString : IMYOBExportString
     {
         private readonly IDbConnection connection;
 

@@ -7,7 +7,11 @@ using System.Data;
 
 namespace CaddyExportLite
 {
-    public class ExportListing
+    public interface IExportListing
+    {
+        IEnumerable<dynamic> FetchExportListing();
+    }
+    public class ExportListing : IExportListing
     {
         private readonly IDbConnection connection;
 

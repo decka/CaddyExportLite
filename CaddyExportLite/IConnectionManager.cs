@@ -13,6 +13,7 @@ namespace CaddyExportLite
         IEnumerable<string> GetClientGUIDsFromConnectionID(string ConnectionID);
         IEnumerable<string> GetConnectionIDsFromClientGUID(string ClientGUID);
         void SetClientGUID(string connectionID, string clientGUID);
-        ConnectionMapping GetConnectionMapping(string connectionID);
+        ConnectionMapping GetConnectionMappingFromConnectionID(string connectionID);
+        ConnectionMapping GetConnectionMappingFromClientGUID(string clientGUID);
     }
 }
