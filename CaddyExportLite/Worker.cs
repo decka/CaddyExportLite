@@ -57,8 +57,9 @@ namespace CaddyExportLite
 
                         foreach (var SingleExportString in ExportStringsForClient)
                         {
-                            //theHubContext.Clients[ExportRecord.ClientGUID].addMessage(SingleExportString);
-                            Console.WriteLine("ClientGUID: {0}, ExportID: {1}, Export String: {2}", ExportRecord.ClientGUID, ExportRecord.ExportID, SingleExportString);
+                            var ClientConnectionID = aConnectionManager.GetConnectionIDFromClientGUID(ExportRecord.ClientGUID);
+                            Console.WriteLine("{0}:{1}", ClientConnectionID, SingleExportString);
+                            //theHubContext.Clients[ClientConnectionID].addMessage(SingleExportString);
                         }
                     }
                     else

@@ -11,7 +11,7 @@ namespace CaddyExportLite
         void AddConnection(string connectionID);
         void RemoveConnection(string connectionID);
         IEnumerable<string> GetClientGUIDsFromConnectionID(string ConnectionID);
-        IEnumerable<string> GetConnectionIDsFromClientGUID(string ClientGUID);
+        string GetConnectionIDFromClientGUID(string ClientGUID);
         void SetClientGUID(string connectionID, string clientGUID);
         ConnectionMapping GetConnectionMappingFromConnectionID(string connectionID);
         ConnectionMapping GetConnectionMappingFromClientGUID(string clientGUID);

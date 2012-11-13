@@ -23,10 +23,13 @@ namespace CaddyExportLite.Tests
             IExportListing aExportListing = new ExportListing(dbconnection.connection);
             IMYOBExportString aMYOBExportString = new MYOBExportString(dbconnection.connection);
             ConnectionManager aConnectionManager = new ConnectionManager();
-
+            
             var componentUnderTest = new Worker();
 
             // Act
+            aConnectionManager.AddConnection("FakeSignalRConnectionID");
+            aConnectionManager.SetClientGUID("FakeSignalRConnectionID", "226d7253-012a-457c-b98c-f3e82e0d7bf3");
+
             componentUnderTest.DoWork(aConnectionManager, aExportListing, aMYOBExportString, null);
 
             // Assert

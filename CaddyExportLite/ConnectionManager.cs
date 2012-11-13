@@ -33,12 +33,12 @@ namespace CaddyExportLite
                 where n.ConnectionID == ConnectionID
                 select n.ClientGUID;
         }
-        public IEnumerable<string> GetConnectionIDsFromClientGUID(string ClientGUID)
+        public string GetConnectionIDFromClientGUID(string ClientGUID)
         {
             return
-                from n in ConnectionMappings
+                (from n in ConnectionMappings
                 where n.ClientGUID == ClientGUID
-                select n.ConnectionID;
+                select n.ConnectionID).First();
         }
 
         public void SetClientGUID(string connectionID, string clientGUID)
