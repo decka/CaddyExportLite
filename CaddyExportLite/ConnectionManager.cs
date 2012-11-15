@@ -7,59 +7,38 @@ namespace CaddyExportLite
 {
     public class ConnectionManager : IConnectionManager
     {
-        private List<ConnectionMapping> ConnectionMappings;
-
+        private Dictionary<string, string> ConnectionMappings;
         public ConnectionManager()
         {
-            ConnectionMappings = new List<ConnectionMapping>();
+            ConnectionMappings = new Dictionary<string, string>();
         }
-
-        public void AddConnection(string connectionID)
+        public void AddConnection(string connectionID, string clientGUID)
         {
-            ConnectionMappings.Add(new ConnectionMapping(connectionID));
+            ConnectionMappings.Add(connectionID, clientGUID);
         }
-
         public void RemoveConnection(string connectionID)
         {
-            var mapping = GetConnectionMappingFromConnectionID(connectionID);
-            if (mapping != null)
-                ConnectionMappings.Remove(mapping);
+            ConnectionMappings.Remove(connectionID);
         }
-
-        public IEnumerable<string> GetClientGUIDsFromConnectionID(string ConnectionID)
+        public string GetClientGUIDFromConnectionID(string connectionID)
         {
-            return
-                from n in ConnectionMappings
-                where n.ConnectionID == ConnectionID
-                select n.ClientGUID;
+            return ConnectionMappings.Where(n => n.Key == connectionID).FirstOrDefault().Value;
         }
-        public string GetConnectionIDFromClientGUID(string ClientGUID)
+        public string GetConnectionIDFromClientGUID(string clientGUID)
         {
-            return
-                (from n in ConnectionMappings
-                where n.ClientGUID == ClientGUID
-                select n.ConnectionID).First();
+            return ConnectionMappings.Where(n => n.Value == clientGUID).FirstOrDefault().Key;
         }
-
         public void SetClientGUID(string connectionID, string clientGUID)
         {
-            var mapping = GetConnectionMappingFromConnectionID(connectionID);
-            mapping.ClientGUID = clientGUID;
+            ConnectionMappings[connectionID] = clientGUID;
         }
-
-        public ConnectionMapping GetConnectionMappingFromConnectionID(string connectionID)
-        {
-            return ConnectionMappings.Find(p => p.ConnectionID == connectionID);
-        }
-
-        public ConnectionMapping GetConnectionMappingFromClientGUID(string clientGUID)
-        {
-            return ConnectionMappings.Find(p => p.ClientGUID == clientGUID);
-        }
-
         public bool IsClientGUIDConnected(string clientGUID)
         {
-            return ConnectionMappings.Exists(p => p.ClientGUID == clientGUID);
+            return ConnectionMappings.ContainsValue(clientGUID);
+        }
+        public bool IsConnectionIDConnected(string connectionID)
+        {
+            return ConnectionMappings.ContainsKey(connectionID);
         }
     }
 }

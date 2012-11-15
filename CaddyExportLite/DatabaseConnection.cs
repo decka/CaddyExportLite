@@ -12,7 +12,7 @@ namespace CaddyExportLite
         public string connectionString;
         public DatabaseConnection()
         {
-            this.connectionString = @"Server=(LocalDB)\v11.0;Integrated Security=true;AttachDbFileName=F:\Code\CaddyExportLite\CaddyDatabase.mdf";
+            this.connectionString = @"Server=(LocalDB)\v11.0;Integrated Security=true;AttachDbFileName=E:\CaddyDatabase.mdf";
             this.connection = new System.Data.SqlClient.SqlConnection(connectionString);
         }
         public void Open()

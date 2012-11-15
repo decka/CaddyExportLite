@@ -27,7 +27,7 @@ namespace CaddyExportLite
         {
             return Task.Factory.StartNew(
                 () => 
-                    theConnectionManager.AddConnection(Context.ConnectionId)
+                    theConnectionManager.AddConnection(Context.ConnectionId, null)
                 );
         }
         public Task Reconnect(IEnumerable<string> groups)
@@ -35,9 +35,8 @@ namespace CaddyExportLite
             return Task.Factory.StartNew(
                 () =>
                     {
-                        var mapping = theConnectionManager.GetConnectionMappingFromConnectionID(Context.ConnectionId);
-                        if (mapping == null)
-                            theConnectionManager.AddConnection(Context.ConnectionId);
+                        if (!theConnectionManager.IsConnectionIDConnected(Context.ConnectionId))
+                            theConnectionManager.AddConnection(Context.ConnectionId, null);
                     }
                 );
         }
