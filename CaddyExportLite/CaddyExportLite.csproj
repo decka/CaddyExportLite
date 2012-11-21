@@ -138,12 +138,14 @@
     <Compile Include="CaddyExportHub.cs" />
     <Compile Include="ConnectionManager.cs" />
     <Compile Include="ConnectionMapping.cs" />
+    <Compile Include="ConsoleStringSender.cs" />
     <Compile Include="DatabaseConnection.cs" />
     <Compile Include="ExportListing.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ICanSendAString.cs" />
+    <Compile Include="HubStringSender.cs" />
+    <Compile Include="ICanSendStringToClient.cs" />
     <Compile Include="IConnectionManager.cs" />
     <Compile Include="MYOBExportString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

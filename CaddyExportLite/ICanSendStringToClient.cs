@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CaddyExportLite
 {
-    public interface ICanSendAString
+    public interface ICanSendStringToClient
     {
-        void addMessage(string theMessage);
+        void SendDataToClient(string connectionID, string data);
     }
 }
