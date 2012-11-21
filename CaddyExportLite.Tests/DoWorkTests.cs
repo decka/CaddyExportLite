@@ -25,8 +25,9 @@ namespace CaddyExportLite.Tests
             IExportListing aExportListing = new ExportListing(dbconnection.connection);
             IMYOBExportString aMYOBExportString = new MYOBExportString(dbconnection.connection);
             IConnectionManager aConnectionManager = new ConnectionManager();
+            ICanSendStringToClient aStringSender = new ConsoleStringSender();
 
-            var componentUnderTest = new Worker(aConnectionManager, aExportListing, aMYOBExportString, null);
+            var componentUnderTest = new Worker(aConnectionManager, aExportListing, aMYOBExportString, aStringSender);
 
             // Act
             aConnectionManager.AddConnection("FakeSignalRConnectionID", null);

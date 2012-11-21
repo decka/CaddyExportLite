@@ -14,18 +14,18 @@ namespace CaddyExportLite
         private IExportListing aExportListing;
         private IMYOBExportString aMYOBExportString;
         private IConnectionManager aConnectionManager;
-        private ICanSendAString stringSender;
+        private ICanSendStringToClient aStringSender;
         private Timer aTimer;
 
         public Worker(  IConnectionManager aConnectionManager,
                         IExportListing aExportListing,
                         IMYOBExportString aMYOBExportString,
-                        ICanSendAString stringSender)
+                        ICanSendStringToClient stringSender)
         {
             this.aConnectionManager = aConnectionManager;
             this.aExportListing = aExportListing;
             this.aMYOBExportString = aMYOBExportString;
-            this.stringSender = stringSender;
+            this.aStringSender = stringSender;
         }
         public void Initialise()
         {
@@ -53,9 +53,8 @@ namespace CaddyExportLite
 
                         foreach (var SingleExportString in ExportStringsForClient)
                         {
-                            var ClientConnectionID = aConnectionManager.GetConnectionIDFromClientGUID(ExportRecord.ClientGUID);
-                            //stringSender.addMessage(SingleExportString);
-                            Console.WriteLine("{0}:{1}", ClientConnectionID, SingleExportString);
+                            var ClientConnectionID = (string)aConnectionManager.GetConnectionIDFromClientGUID(ExportRecord.ClientGUID);
+                            aStringSender.SendDataToClient(ClientConnectionID, SingleExportString);
                         }
                     }
                     else
@@ -64,10 +63,6 @@ namespace CaddyExportLite
                     }
                 }
             }
-        }
-        public void SendDataToClient(string clientGUID, string data)
-        {
-
         }
     }
 }
