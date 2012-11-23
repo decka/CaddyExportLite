@@ -53,7 +53,10 @@ namespace CaddyExportLite.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IConnectionManager>().To<ConnectionManager>();
+            kernel.Bind<IExportListing>().To<ExportListing>().InSingletonScope();
+            kernel.Bind<IMYOBExportString>().To<MYOBExportString>().InSingletonScope();
+            kernel.Bind<IConnectionManager>().To<ConnectionManager>().InSingletonScope();
+            kernel.Bind<ICanSendStringToClient>().To<HubStringSender>().InSingletonScope();
 
             SignalR.GlobalHost.DependencyResolver = new SignalR.Ninject.NinjectDependencyResolver(kernel);
         }        

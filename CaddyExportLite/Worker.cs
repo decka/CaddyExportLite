@@ -29,7 +29,7 @@ namespace CaddyExportLite
         }
         public void Initialise()
         {
-            aTimer = new Timer(1000);
+            aTimer = new Timer(3000);
             aTimer.AutoReset = true;
             aTimer.Elapsed += new ElapsedEventHandler(TimerElapsed);
             aTimer.Start();

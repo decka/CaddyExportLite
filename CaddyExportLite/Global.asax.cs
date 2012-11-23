@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using SignalR;
+using Ninject;
 
 namespace CaddyExportLite
 {
@@ -22,6 +23,12 @@ namespace CaddyExportLite
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            var dbconnection = new DatabaseConnection();
+            dbconnection.Open();
+
+            //Worker theBoss = new Worker(aConnectionManager, aExportListing, aMYOBExportString, aStringSender);
+            //theBoss.Initialise();
         }
     }
 }

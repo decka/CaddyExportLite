@@ -11,7 +11,7 @@ namespace CaddyExportLite
     {
         private IConnectionManager theConnectionManager;
 
-        public void SetConnectionManager(IConnectionManager connectionManager)
+        public CaddyExportHub(IConnectionManager connectionManager)
         {
             this.theConnectionManager = connectionManager;
         }
