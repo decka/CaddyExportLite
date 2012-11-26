@@ -19,9 +19,9 @@ namespace CaddyExportLite.Tests
         public void DoWork()
         {
             // Arrange
-            string connectionString = @"Server=(LocalDB)\v11.0;Integrated Security=true;AttachDbFileName=E:\CaddyDatabase.mdf";
-
+            string connectionString = @"Server=(localdb)\v11.0;Integrated Security=true;AttachDbFileName=E:\CaddyDatabase.mdf";
             IDbConnection dbconnection = new System.Data.SqlClient.SqlConnection(connectionString);
+
             IExportHandler aExportHandler = new ExportHandler(dbconnection);
             IConnectionManager aConnectionManager = new ConnectionManager();
             ICanSendStringToClient aStringSender = new ConsoleStringSender();
@@ -33,6 +33,7 @@ namespace CaddyExportLite.Tests
             aConnectionManager.SetClientGUID("FakeSignalRConnectionID", "226d7253-012a-457c-b98c-f3e82e0d7bf3");
 
             componentUnderTest.DoWork();
+            System.Threading.Thread.Sleep(3000);
 
             // Assert
             //Assert.IsNotEmpty(results);

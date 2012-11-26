@@ -17,7 +17,6 @@ namespace CaddyExportLite.Tests
             // Arrange
             string connectionString = @"Server=(LocalDB)\v11.0;Integrated Security=true;AttachDbFileName=E:\CaddyDatabase.mdf";
             IDbConnection dbconnection = new System.Data.SqlClient.SqlConnection(connectionString);
-            dbconnection.Open();
 
             var componentUnderTest = new ExportHandler(dbconnection);
 
@@ -34,7 +33,6 @@ namespace CaddyExportLite.Tests
             // Arrange
             string connectionString = @"Server=(LocalDB)\v11.0;Integrated Security=true;AttachDbFileName=E:\CaddyDatabase.mdf";
             IDbConnection dbconnection = new System.Data.SqlClient.SqlConnection(connectionString);
-            dbconnection.Open();
 
             var componentUnderTest = new ExportHandler(dbconnection);
 

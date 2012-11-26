@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace CaddyExportLite
 {
-    public interface IExportHandler
+    public interface ICanRecieveResultFromClient
     {
-        IEnumerable<dynamic> FetchExportListing();
-        IEnumerable<string> FetchExportStringsForID(int ID);
         void MarkExportAsComplete(int exportID, string result);
     }
 }

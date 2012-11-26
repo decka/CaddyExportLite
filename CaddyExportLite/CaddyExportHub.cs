@@ -10,11 +10,13 @@ namespace CaddyExportLite
 {
     public class CaddyExportHub : Hub, IDisconnect, IConnected
     {
-        private IConnectionManager theConnectionManager;
+        private readonly IConnectionManager theConnectionManager;
+        private readonly ICanRecieveResultFromClient theResultsReciever;
 
-        public CaddyExportHub(IConnectionManager connectionManager)
+        public CaddyExportHub(IConnectionManager connectionManager, ICanRecieveResultFromClient theResultsReciever)
         {
             this.theConnectionManager = connectionManager;
+            this.theResultsReciever = theResultsReciever;
         }
         #region Connection Management
         public Task Disconnect()
@@ -48,9 +50,19 @@ namespace CaddyExportLite
         {
             return new TaskFactory().StartNew(
                 () => 
-                    theConnectionManager.SetClientGUID(Context.ConnectionId, clientGUID)
-                    );
+                    {
+                        theConnectionManager.SetClientGUID(Context.ConnectionId, clientGUID);
+                    });
         }
+        public Task MarkExportAsComplete(int exportID, string result)
+        {
+            return new TaskFactory().StartNew(
+                () => 
+                    {
+                        theResultsReciever.MarkExportAsComplete(exportID, result);
+                    });
+        }
+
         #endregion
 
         #region Server callable Methods

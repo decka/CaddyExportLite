@@ -55,17 +55,24 @@ namespace CaddyExportLite.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            string connectionString = @"Server=(LocalDB)\v11.0;Integrated Security=true;AttachDbFileName=E:\CaddyDatabase.mdf";
+            string connectionString = Properties.Settings.Default.connectionString;
+            if (connectionString != null)
+            {
+                kernel.Bind<IDbConnection>().To<SqlConnection>().InSingletonScope().WithConstructorArgument("connectionString", connectionString);
+                kernel.Bind<IExportHandler>().To<ExportHandler>().InSingletonScope();
+                kernel.Bind<IConnectionManager>().To<ConnectionManager>().InSingletonScope();
+                kernel.Bind<ICanSendStringToClient>().To<HubStringSender>().InSingletonScope();
+                kernel.Bind<ICanRecieveResultFromClient>().To<Worker>().InSingletonScope();
 
-            kernel.Bind<IDbConnection>().To<SqlConnection>().InSingletonScope().WithConstructorArgument("connectionString", connectionString);
-            kernel.Bind<IExportHandler>().To<ExportHandler>().InSingletonScope();
-            kernel.Bind<IConnectionManager>().To<ConnectionManager>().InSingletonScope();
-            kernel.Bind<ICanSendStringToClient>().To<HubStringSender>().InSingletonScope();
+                SignalR.GlobalHost.DependencyResolver = new SignalR.Ninject.NinjectDependencyResolver(kernel);
 
-            SignalR.GlobalHost.DependencyResolver = new SignalR.Ninject.NinjectDependencyResolver(kernel);
-
-            var theWorker = kernel.Get<Worker>();
-            theWorker.Initialise();
+                var theWorker = kernel.Get<Worker>();
+                theWorker.Initialise();
+            }
+            else
+            {
+                throw new ArgumentException("connectionString Setting cannot be null");
+            }
         }        
     }
 }

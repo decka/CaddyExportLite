@@ -9,7 +9,7 @@ using Ninject;
 
 namespace CaddyExportLite
 {
-    public class Worker
+    public class Worker : ICanRecieveResultFromClient
     {
         private IExportHandler aExportHandler;
         private IConnectionManager aConnectionManager;
@@ -26,10 +26,18 @@ namespace CaddyExportLite
         }
         public void Initialise()
         {
-            aTimer = new Timer(3000);
-            aTimer.AutoReset = true;
-            aTimer.Elapsed += new ElapsedEventHandler(TimerElapsed);
-            aTimer.Start();
+            var PollingTime = Properties.Settings.Default.PollingTime;
+            if (PollingTime > 0)
+            {
+                aTimer = new Timer(PollingTime);
+                aTimer.AutoReset = true;
+                aTimer.Elapsed += new ElapsedEventHandler(TimerElapsed);
+                aTimer.Start();
+            }
+            else
+            {
+                throw new ArgumentException("pollingTime Setting cannot be less than or equal to 0.");
+            }
         }
         private void TimerElapsed(object source, ElapsedEventArgs e)
         {
@@ -54,12 +62,13 @@ namespace CaddyExportLite
                             aStringSender.SendDataToClient(ClientConnectionID, SingleExportString);
                         }
                     }
-                    else
-                    {
-                        Console.WriteLine("ClientGUID: {0} is not connected.", ExportRecord.ClientGUID);
-                    }
                 }
             }
+        }
+
+        public void MarkExportAsComplete(int exportID, string result)
+        {
+            aExportHandler.MarkExportAsComplete(exportID, result);
         }
     }
 }
