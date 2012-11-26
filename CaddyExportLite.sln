@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5F9428
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaddyExportLite.Client", "CaddyExportLite.Console\CaddyExportLite.Client.csproj", "{07E8135F-A5B1-49BE-AD79-03D7CF7BE6E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaddyExportLite.Client", "CaddyExportLite.Client\CaddyExportLite.Client.csproj", "{07E8135F-A5B1-49BE-AD79-03D7CF7BE6E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
