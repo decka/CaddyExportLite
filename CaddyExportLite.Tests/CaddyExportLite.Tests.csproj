@@ -71,10 +71,8 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseConnectionTests.cs" />
     <Compile Include="DoWorkTests.cs" />
-    <Compile Include="ExportListingTests.cs" />
-    <Compile Include="MYOBExportStringTests.cs" />
+    <Compile Include="ExportHandlerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CaddyExportLite\CaddyExportLite.csproj">
