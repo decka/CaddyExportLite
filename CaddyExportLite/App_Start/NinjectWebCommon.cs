@@ -10,6 +10,8 @@ namespace CaddyExportLite.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using System.Data;
+    using System.Data.SqlClient;
 
     public static class NinjectWebCommon 
     {
@@ -53,12 +55,17 @@ namespace CaddyExportLite.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IExportListing>().To<ExportListing>().InSingletonScope();
-            kernel.Bind<IMYOBExportString>().To<MYOBExportString>().InSingletonScope();
+            string connectionString = @"Server=(LocalDB)\v11.0;Integrated Security=true;AttachDbFileName=E:\CaddyDatabase.mdf";
+
+            kernel.Bind<IDbConnection>().To<SqlConnection>().InSingletonScope().WithConstructorArgument("connectionString", connectionString);
+            kernel.Bind<IExportHandler>().To<ExportHandler>().InSingletonScope();
             kernel.Bind<IConnectionManager>().To<ConnectionManager>().InSingletonScope();
             kernel.Bind<ICanSendStringToClient>().To<HubStringSender>().InSingletonScope();
 
             SignalR.GlobalHost.DependencyResolver = new SignalR.Ninject.NinjectDependencyResolver(kernel);
+
+            var theWorker = kernel.Get<Worker>();
+            theWorker.Initialise();
         }        
     }
 }

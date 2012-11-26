@@ -11,20 +11,17 @@ namespace CaddyExportLite
 {
     public class Worker
     {
-        private IExportListing aExportListing;
-        private IMYOBExportString aMYOBExportString;
+        private IExportHandler aExportHandler;
         private IConnectionManager aConnectionManager;
         private ICanSendStringToClient aStringSender;
         private Timer aTimer;
 
         public Worker(  IConnectionManager aConnectionManager,
-                        IExportListing aExportListing,
-                        IMYOBExportString aMYOBExportString,
+                        IExportHandler aExportHandler,
                         ICanSendStringToClient stringSender)
         {
             this.aConnectionManager = aConnectionManager;
-            this.aExportListing = aExportListing;
-            this.aMYOBExportString = aMYOBExportString;
+            this.aExportHandler = aExportHandler;
             this.aStringSender = stringSender;
         }
         public void Initialise()
@@ -41,7 +38,7 @@ namespace CaddyExportLite
 
         public void DoWork()
         {
-            var ItemsToExport = aExportListing.FetchExportListing();
+            var ItemsToExport = aExportHandler.FetchExportListing();
 
             foreach (var ExportRecord in ItemsToExport)
             {
@@ -49,7 +46,7 @@ namespace CaddyExportLite
                 {
                     if (aConnectionManager.IsClientGUIDConnected((string)ExportRecord.ClientGUID))
                     {
-                        var ExportStringsForClient = aMYOBExportString.FetchExportStringsForID((int)ExportRecord.taskid);
+                        var ExportStringsForClient = aExportHandler.FetchExportStringsForID((int)ExportRecord.taskid);
 
                         foreach (var SingleExportString in ExportStringsForClient)
                         {

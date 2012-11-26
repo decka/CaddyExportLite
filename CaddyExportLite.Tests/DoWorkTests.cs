@@ -19,15 +19,14 @@ namespace CaddyExportLite.Tests
         public void DoWork()
         {
             // Arrange
-            var dbconnection = new DatabaseConnection();
-            dbconnection.Open();
+            string connectionString = @"Server=(LocalDB)\v11.0;Integrated Security=true;AttachDbFileName=E:\CaddyDatabase.mdf";
 
-            IExportListing aExportListing = new ExportListing(dbconnection.connection);
-            IMYOBExportString aMYOBExportString = new MYOBExportString(dbconnection.connection);
+            IDbConnection dbconnection = new System.Data.SqlClient.SqlConnection(connectionString);
+            IExportHandler aExportHandler = new ExportHandler(dbconnection);
             IConnectionManager aConnectionManager = new ConnectionManager();
             ICanSendStringToClient aStringSender = new ConsoleStringSender();
 
-            var componentUnderTest = new Worker(aConnectionManager, aExportListing, aMYOBExportString, aStringSender);
+            var componentUnderTest = new Worker(aConnectionManager, aExportHandler, aStringSender);
 
             // Act
             aConnectionManager.AddConnection("FakeSignalRConnectionID", null);
@@ -37,6 +36,7 @@ namespace CaddyExportLite.Tests
 
             // Assert
             //Assert.IsNotEmpty(results);
+       
         }
     }
 }

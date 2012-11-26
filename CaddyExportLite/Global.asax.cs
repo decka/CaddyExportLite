@@ -24,9 +24,6 @@ namespace CaddyExportLite
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            var dbconnection = new DatabaseConnection();
-            dbconnection.Open();
-
             //Worker theBoss = new Worker(aConnectionManager, aExportListing, aMYOBExportString, aStringSender);
             //theBoss.Initialise();
         }
