@@ -7,8 +7,8 @@
     <ProjectGuid>{07E8135F-A5B1-49BE-AD79-03D7CF7BE6E4}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CaddyExportLite.Console</RootNamespace>
-    <AssemblyName>CaddyExportLite.Console</AssemblyName>
+    <RootNamespace>CaddyExportLite.Client</RootNamespace>
+    <AssemblyName>CaddyExportLite.Client</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
