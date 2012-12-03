@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CaddyExportLite.Client.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ClientGUID" Type="System.Guid" Scope="Application">
+      <Value Profile="(Default)">226d7253-012a-457c-b98c-f3e82e0d7bf3</Value>
+    </Setting>
+    <Setting Name="HubConnectionURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:10790/</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

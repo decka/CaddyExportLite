@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SignalR.Client.Hubs;
+using CaddyExportLite.Client;
 
 namespace CaddyExportLite.Client
 {
@@ -11,24 +11,26 @@ namespace CaddyExportLite.Client
     {
         static void Main(string[] args)
         {
-            // Connect to the service
-            var hubConnection = new HubConnection("http://localhost:10790/");
-
-            // Create a proxy to the chat service
-            var caddyExportHub = hubConnection.CreateProxy("CaddyExportHub");
-
-            // Print the message when it comes in
-            caddyExportHub.On("addMessage", message => Console.WriteLine(message));
-
-            // Start the connection
-            hubConnection.Start().Wait();
-
-            caddyExportHub.Invoke("SetClientGUID", "226d7253-012a-457c-b98c-f3e82e0d7bf3");
-
-            string line = null;
-            while ((line = Console.ReadLine()) != null)
+            var hubConnectionURL = Properties.Settings.Default.HubConnectionURL;
+            var clientGUID = Properties.Settings.Default.ClientGUID;
+            if (hubConnectionURL != null)
             {
+                if (clientGUID != null)
+                {
+                    var theHubServerConnection = new HubServerConnection(clientGUID, hubConnectionURL);
+                    theHubServerConnection.PreStartupJobs();
+                    theHubServerConnection.PostStartupJobs();
+
+                    string line = null;
+                    while ((line = Console.ReadLine()) != null)
+                    {
+                    }
+                }
+                else
+                    throw new ArgumentNullException("ClientGUID Setting cannot be null.");
             }
+            else
+                throw new ArgumentNullException("HubConnectionURL Setting cannot be null.");
         }
     }
 }
