@@ -62,7 +62,7 @@ namespace CaddyExportLite.App_Start
                 kernel.Bind<IExportHandler>().To<ExportHandler>().InSingletonScope();
                 kernel.Bind<IConnectionManager>().To<ConnectionManager>().InSingletonScope();
                 kernel.Bind<ICanSendStringToClient>().To<HubStringSender>().InSingletonScope();
-                kernel.Bind<ICanRecieveResultFromClient>().To<Worker>().InSingletonScope();
+                kernel.Bind<ICanMarkExportAsComplete>().To<Worker>().InSingletonScope();
 
                 SignalR.GlobalHost.DependencyResolver = new SignalR.Ninject.NinjectDependencyResolver(kernel);
 

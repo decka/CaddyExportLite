@@ -10,27 +10,27 @@ namespace CaddyExportLite
 {
     public class CaddyExportHub : Hub, IDisconnect, IConnected
     {
-        private readonly IConnectionManager theConnectionManager;
-        private readonly ICanRecieveResultFromClient theResultsReciever;
+        private readonly IConnectionManager CaddyConnectionManager;
+        private readonly ICanMarkExportAsComplete ExportCompleter;
 
-        public CaddyExportHub(IConnectionManager connectionManager, ICanRecieveResultFromClient theResultsReciever)
+        public CaddyExportHub(IConnectionManager connectionManager, ICanMarkExportAsComplete exportCompleter)
         {
-            this.theConnectionManager = connectionManager;
-            this.theResultsReciever = theResultsReciever;
+            this.CaddyConnectionManager = connectionManager;
+            this.ExportCompleter = exportCompleter;
         }
         #region Connection Management
         public Task Disconnect()
         {
             return Task.Factory.StartNew(
                 () => 
-                    theConnectionManager.RemoveConnection(Context.ConnectionId)
+                    CaddyConnectionManager.RemoveConnection(Context.ConnectionId)
                 );
         }
         public Task Connect()
         {
             return Task.Factory.StartNew(
                 () => 
-                    theConnectionManager.AddConnection(Context.ConnectionId, null)
+                    CaddyConnectionManager.AddConnection(Context.ConnectionId, null)
                 );
         }
         public Task Reconnect(IEnumerable<string> groups)
@@ -38,8 +38,8 @@ namespace CaddyExportLite
             return Task.Factory.StartNew(
                 () =>
                     {
-                        if (!theConnectionManager.IsConnectionIDConnected(Context.ConnectionId))
-                            theConnectionManager.AddConnection(Context.ConnectionId, null);
+                        if (!CaddyConnectionManager.IsConnectionIDConnected(Context.ConnectionId))
+                            CaddyConnectionManager.AddConnection(Context.ConnectionId, null);
                     }
                 );
         }
@@ -51,7 +51,7 @@ namespace CaddyExportLite
             return new TaskFactory().StartNew(
                 () => 
                     {
-                        theConnectionManager.SetClientGUID(Context.ConnectionId, clientGUID);
+                        CaddyConnectionManager.SetClientGUID(Context.ConnectionId, clientGUID);
                     });
         }
         public Task MarkExportAsComplete(int exportID, string result)
@@ -59,17 +59,17 @@ namespace CaddyExportLite
             return new TaskFactory().StartNew(
                 () => 
                     {
-                        theResultsReciever.MarkExportAsComplete(exportID, result);
+                        ExportCompleter.MarkExportAsComplete(exportID, result);
                     });
         }
 
         #endregion
 
         #region Server callable Methods
-        internal static void SendDataToClients(string connectionID, string data)
+        internal static void SendDataToClient(string connectionID, string data)
         {
             var hubContext = GlobalHost.ConnectionManager.GetHubContext<CaddyExportHub>();
-            hubContext.Clients[connectionID].addMessage(data);
+            hubContext.Clients[connectionID].stringFromServer(data);
         }
         #endregion
     }

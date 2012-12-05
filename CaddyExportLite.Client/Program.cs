@@ -13,13 +13,12 @@ namespace CaddyExportLite.Client
         {
             var hubConnectionURL = Properties.Settings.Default.HubConnectionURL;
             var clientGUID = Properties.Settings.Default.ClientGUID;
+
             if (hubConnectionURL != null)
             {
                 if (clientGUID != null)
                 {
-                    var theHubServerConnection = new HubServerConnection(clientGUID, hubConnectionURL);
-                    theHubServerConnection.PreStartupJobs();
-                    theHubServerConnection.PostStartupJobs();
+                    var theHubServerConnection = new HubServerConnection(hubConnectionURL, clientGUID);
 
                     string line = null;
                     while ((line = Console.ReadLine()) != null)

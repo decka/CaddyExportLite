@@ -14,20 +14,25 @@ namespace CaddyExportLite.Client
         public HubConnection theHubConnection { get; set; }
         public IHubProxy caddyExportHub { get; set; }
 
-        public HubServerConnection(Guid clientGUID, string hubConnectionURL)
+        public HubServerConnection(string hubConnectionURL, Guid clientGUID)
         {
-            this.ClientGUID = clientGUID;
             this.HubConnectionURL = hubConnectionURL;
+            this.ClientGUID = clientGUID;
+
+            ConnectToHub();
+            SetupOnStringFromServer(message => Console.WriteLine(message));
+            StartHub();
+            TrySetClientGUID(this.ClientGUID);            
         }
-        public void ConnectToServer()
+        public void ConnectToHub()
         {
             theHubConnection = new HubConnection(HubConnectionURL);
             caddyExportHub = theHubConnection.CreateProxy("CaddyExportHub");
         }
 
-        public void SetupCallbacks()
+        public void SetupOnStringFromServer(Action<string> onAddMessage)
         {
-            caddyExportHub.On("addMessage", message => Console.WriteLine(message));
+            caddyExportHub.On("stringFromServer", onAddMessage);
         }
 
         public void StartHub()
@@ -35,20 +40,19 @@ namespace CaddyExportLite.Client
             theHubConnection.Start().Wait();
         }
 
-        public void SetClientGUID()
+        public void TrySetClientGUID(Guid ClientGUID)
         {
-            caddyExportHub.Invoke("SetClientGUID", ClientGUID);
-        }
-
-        public void PreStartupJobs()
-        {
-            ConnectToServer();
-            SetupCallbacks();
-            StartHub();
-        }
-        public void PostStartupJobs()
-        {
-            SetClientGUID();
+            caddyExportHub.Invoke("SetClientGUID", ClientGUID.ToString()).ContinueWith(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    Console.WriteLine("An error occurred during the method call {0}", task.Exception.GetBaseException());
+                }
+                else
+                {
+                    Console.WriteLine("Successfully called SetClientGUID, for ClientGUID: {0}", ClientGUID.ToString());
+                }
+            });
         }
     }
 }

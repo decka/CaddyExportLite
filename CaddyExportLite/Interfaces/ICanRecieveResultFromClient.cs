@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CaddyExportLite
 {
-    public interface ICanRecieveResultFromClient
+    public interface ICanMarkExportAsComplete
     {
         void MarkExportAsComplete(int exportID, string result);
     }

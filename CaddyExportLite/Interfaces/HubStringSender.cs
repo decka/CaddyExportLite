@@ -11,7 +11,7 @@ namespace CaddyExportLite
     {
         public void SendDataToClient(string connectionID, string data)
         {
-            CaddyExportHub.SendDataToClients(connectionID, data);
+            CaddyExportHub.SendDataToClient(connectionID, data);
         }
     }
 }

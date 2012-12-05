@@ -9,7 +9,7 @@ using Ninject;
 
 namespace CaddyExportLite
 {
-    public class Worker : ICanRecieveResultFromClient
+    public class Worker : ICanMarkExportAsComplete
     {
         private IExportHandler aExportHandler;
         private IConnectionManager aConnectionManager;
