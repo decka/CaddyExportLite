@@ -19,7 +19,7 @@ namespace CaddyExportLite.Tests
         public void DoWork()
         {
             // Arrange
-            string connectionString = @"Server=(localdb)\v11.0;Integrated Security=true;AttachDbFileName=E:\CaddyDatabase.mdf";
+            string connectionString = @"Data Source=sqlsvr4.apexhost.net.au;Initial Catalog=construc_1;User ID=construc_usr;";
             IDbConnection dbconnection = new System.Data.SqlClient.SqlConnection(connectionString);
 
             IExportHandler aExportHandler = new ExportHandler(dbconnection);
@@ -29,8 +29,8 @@ namespace CaddyExportLite.Tests
             var componentUnderTest = new Worker(aConnectionManager, aExportHandler, aStringSender);
 
             // Act
-            aConnectionManager.AddConnection("FakeSignalRConnectionID", null);
-            aConnectionManager.SetClientGUID("FakeSignalRConnectionID", "226d7253-012a-457c-b98c-f3e82e0d7bf3");
+            aConnectionManager.AddConnection("FakeSignalRConnectionID", 0);
+            aConnectionManager.SetCaddyID("FakeSignalRConnectionID", 1);
 
             componentUnderTest.DoWork();
             System.Threading.Thread.Sleep(3000);

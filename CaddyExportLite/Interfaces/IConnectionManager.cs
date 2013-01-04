@@ -8,12 +8,12 @@ namespace CaddyExportLite
 {
     public interface IConnectionManager
     {
-        void AddConnection(string connectionID, string clientGUID);
+        void AddConnection(string connectionID, int caddyID);
         void RemoveConnection(string connectionID);
-        string GetClientGUIDFromConnectionID(string ConnectionID);
-        string GetConnectionIDFromClientGUID(string ClientGUID);
-        void SetClientGUID(string connectionID, string clientGUID);
-        bool IsClientGUIDConnected(string clientGUID);
+        int GetCaddyIDFromConnectionID(string ConnectionID);
+        string GetConnectionIDFromCaddyID(int caddyID);
+        void SetCaddyID(string connectionID, int caddyID);
+        bool IsCaddyIDConnected(int caddyID);
         bool IsConnectionIDConnected(string connectionID);
     }
 }

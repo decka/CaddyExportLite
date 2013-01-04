@@ -7,32 +7,32 @@ namespace CaddyExportLite
 {
     public class ConnectionManager : IConnectionManager
     {
-        private Dictionary<string, string> ConnectionMappings;
+        private Dictionary<string, int> ConnectionMappings;
         public ConnectionManager()
         {
-            ConnectionMappings = new Dictionary<string, string>();
+            ConnectionMappings = new Dictionary<string, int>();
         }
-        public void AddConnection(string connectionID, string clientGUID)
+        public void AddConnection(string connectionID, int caddyID)
         {
-            ConnectionMappings.Add(connectionID, clientGUID);
+            ConnectionMappings.Add(connectionID, caddyID);
         }
         public void RemoveConnection(string connectionID)
         {
             ConnectionMappings.Remove(connectionID);
         }
-        public string GetClientGUIDFromConnectionID(string connectionID)
+        public int GetCaddyIDFromConnectionID(string connectionID)
         {
             return ConnectionMappings.Where(n => n.Key == connectionID).FirstOrDefault().Value;
         }
-        public string GetConnectionIDFromClientGUID(string clientGUID)
+        public string GetConnectionIDFromCaddyID(int clientGUID)
         {
             return ConnectionMappings.Where(n => n.Value == clientGUID).FirstOrDefault().Key;
         }
-        public void SetClientGUID(string connectionID, string clientGUID)
+        public void SetCaddyID(string connectionID, int clientGUID)
         {
             ConnectionMappings[connectionID] = clientGUID;
         }
-        public bool IsClientGUIDConnected(string clientGUID)
+        public bool IsCaddyIDConnected(int clientGUID)
         {
             return ConnectionMappings.ContainsValue(clientGUID);
         }

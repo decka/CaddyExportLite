@@ -50,15 +50,15 @@ namespace CaddyExportLite
 
             foreach (var ExportRecord in ItemsToExport)
             {
-                if (ExportRecord.taskid != null && ExportRecord.ClientGUID != null)
+                if (ExportRecord.taskid != null && ExportRecord.CaddyID != null)
                 {
-                    if (aConnectionManager.IsClientGUIDConnected((string)ExportRecord.ClientGUID))
+                    if (aConnectionManager.IsCaddyIDConnected((int)ExportRecord.CaddyID))
                     {
                         var ExportStringsForClient = aExportHandler.FetchExportStringsForID((int)ExportRecord.taskid);
 
                         foreach (var SingleExportString in ExportStringsForClient)
                         {
-                            var ClientConnectionID = (string)aConnectionManager.GetConnectionIDFromClientGUID(ExportRecord.ClientGUID);
+                            var ClientConnectionID = (string)aConnectionManager.GetConnectionIDFromCaddyID(ExportRecord.CaddyID);
                             aStringSender.SendDataToClient(ClientConnectionID, SingleExportString);
                         }
                     }

@@ -30,7 +30,7 @@ namespace CaddyExportLite
         {
             return Task.Factory.StartNew(
                 () => 
-                    CaddyConnectionManager.AddConnection(Context.ConnectionId, null)
+                    CaddyConnectionManager.AddConnection(Context.ConnectionId, 0)
                 );
         }
         public Task Reconnect(IEnumerable<string> groups)
@@ -39,19 +39,19 @@ namespace CaddyExportLite
                 () =>
                     {
                         if (!CaddyConnectionManager.IsConnectionIDConnected(Context.ConnectionId))
-                            CaddyConnectionManager.AddConnection(Context.ConnectionId, null);
+                            CaddyConnectionManager.AddConnection(Context.ConnectionId, 0);
                     }
                 );
         }
         #endregion
 
         #region Client callable Methods
-        public Task SetClientGUID(string clientGUID)
+        public Task SetClientGUID(int caddyID)
         {
             return new TaskFactory().StartNew(
                 () => 
                     {
-                        CaddyConnectionManager.SetClientGUID(Context.ConnectionId, clientGUID);
+                        CaddyConnectionManager.SetCaddyID(Context.ConnectionId, caddyID);
                     });
         }
         public Task MarkExportAsComplete(int exportID, string result)
