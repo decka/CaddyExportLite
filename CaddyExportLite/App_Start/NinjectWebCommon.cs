@@ -59,7 +59,7 @@ namespace CaddyExportLite.App_Start
             if (connectionString != null)
             {
                 kernel.Bind<IDbConnection>().To<SqlConnection>().InSingletonScope().WithConstructorArgument("connectionString", connectionString);
-                kernel.Bind<IExportHandler>().To<ExportHandler>().InSingletonScope();
+                kernel.Bind<IExportRepository>().To<SQLExportRepository>().InSingletonScope();
                 kernel.Bind<IConnectionManager>().To<ConnectionManager>().InSingletonScope();
                 kernel.Bind<ICanSendStringToClient>().To<HubStringSender>().InSingletonScope();
                 kernel.Bind<ICanMarkExportAsComplete>().To<Worker>().InSingletonScope();

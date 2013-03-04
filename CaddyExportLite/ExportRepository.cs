@@ -7,11 +7,11 @@ using Dapper;
 
 namespace CaddyExportLite
 {
-    public class ExportHandler : IExportHandler
+    public class SQLExportRepository : IExportRepository
     {
         private readonly IDbConnection Connection;
 
-        public ExportHandler(IDbConnection connection)
+        public SQLExportRepository(IDbConnection connection)
         {
             this.Connection = connection;
             this.Connection.Open();

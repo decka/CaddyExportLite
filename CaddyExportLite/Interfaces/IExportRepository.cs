@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CaddyExportLite
 {
-    public interface IExportHandler
+    public interface IExportRepository
     {
         IEnumerable<dynamic> FetchExportListing();
         IEnumerable<string> FetchExportStringsForID(int ID);

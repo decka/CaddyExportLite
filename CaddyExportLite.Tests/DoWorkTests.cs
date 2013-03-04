@@ -22,7 +22,7 @@ namespace CaddyExportLite.Tests
             string connectionString = @"Data Source=sqlsvr4.apexhost.net.au;Initial Catalog=construc_1;User ID=construc_usr;";
             IDbConnection dbconnection = new System.Data.SqlClient.SqlConnection(connectionString);
 
-            IExportHandler aExportHandler = new ExportHandler(dbconnection);
+            IExportRepository aExportHandler = new SQLExportRepository(dbconnection);
             IConnectionManager aConnectionManager = new ConnectionManager();
             ICanSendStringToClient aStringSender = new ConsoleStringSender();
 

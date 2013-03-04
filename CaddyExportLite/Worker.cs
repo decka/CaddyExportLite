@@ -11,13 +11,13 @@ namespace CaddyExportLite
 {
     public class Worker : ICanMarkExportAsComplete
     {
-        private IExportHandler aExportHandler;
+        private IExportRepository aExportHandler;
         private IConnectionManager aConnectionManager;
         private ICanSendStringToClient aStringSender;
         private Timer aTimer;
 
         public Worker(  IConnectionManager aConnectionManager,
-                        IExportHandler aExportHandler,
+                        IExportRepository aExportHandler,
                         ICanSendStringToClient stringSender)
         {
             this.aConnectionManager = aConnectionManager;
