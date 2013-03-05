@@ -7,7 +7,7 @@
     <ProjectGuid>{39271EF6-5921-4A92-B887-B1976E381F7D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CaddyExportLite.Tests</RootNamespace>
+    <RootNamespace>CaddyExportLite.Transport.Tests</RootNamespace>
     <AssemblyName>CaddyExportLite.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -75,7 +75,7 @@
     <Compile Include="ExportHandlerTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CaddyExportLite\CaddyExportLite.csproj">
+    <ProjectReference Include="..\CaddyExportLite.Transport\CaddyExportLite.Transport.csproj">
       <Project>{b0adbc9e-1474-4e06-af82-47fd84079196}</Project>
       <Name>CaddyExportLite</Name>
     </ProjectReference>

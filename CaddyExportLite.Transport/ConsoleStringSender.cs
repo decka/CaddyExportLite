@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using SignalR.Hubs;
-using SignalR;
 
-namespace CaddyExportLite
+namespace CaddyExportLite.Transport
 {
-    public class HubStringSender : ICanSendStringToClient
+    public class ConsoleStringSender : ICanSendStringToClient
     {
         public void SendDataToClient(string connectionID, string data)
         {
-            CaddyExportHub.SendDataToClient(connectionID, data);
+            Console.WriteLine("Connection ID: {0}, Data: {1}", connectionID, data);
         }
     }
 }

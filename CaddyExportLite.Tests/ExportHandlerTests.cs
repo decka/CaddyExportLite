@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using System.Data;
 
-namespace CaddyExportLite.Tests
+namespace CaddyExportLite.Transport.Tests
 {
     [TestFixture]
     class ExportHandlerTests

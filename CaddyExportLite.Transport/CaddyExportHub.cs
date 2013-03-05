@@ -6,7 +6,7 @@ using SignalR.Hubs;
 using SignalR;
 using System.Threading.Tasks;
 
-namespace CaddyExportLite
+namespace CaddyExportLite.Transport
 {
     public class CaddyExportHub : Hub, IDisconnect, IConnected
     {

@@ -1,4 +1,4 @@
-﻿namespace CaddyExportLite.Properties {
+﻿namespace CaddyExportLite.Transport.Properties {
     
     
     // This class allows you to handle specific events on the settings class:

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SignalR.Client.Hubs;
 
-namespace CaddyExportLite.Client
+namespace CaddyExportLite.Transport.Client
 {
     public class HubServerConnection
     {

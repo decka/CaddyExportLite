@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using System.Data;
-using CaddyExportLite;
+using CaddyExportLite.Transport;
 using SignalR.Hubs;
 using SignalR;
 using Moq;
 
-namespace CaddyExportLite.Tests
+namespace CaddyExportLite.Transport.Tests
 {
     [TestFixture]
     class DoWorkTests

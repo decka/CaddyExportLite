@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 
-namespace CaddyExportLite.Client
+namespace CaddyExportLite.Transport.Client
 {
     public class MYOBProcessor
     {

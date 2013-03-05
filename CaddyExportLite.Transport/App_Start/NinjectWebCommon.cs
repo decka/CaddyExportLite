@@ -1,7 +1,7 @@
-[assembly: WebActivator.PreApplicationStartMethod(typeof(CaddyExportLite.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(CaddyExportLite.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(CaddyExportLite.Transport.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(CaddyExportLite.Transport.App_Start.NinjectWebCommon), "Stop")]
 
-namespace CaddyExportLite.App_Start
+namespace CaddyExportLite.Transport.App_Start
 {
     using System;
     using System.Web;

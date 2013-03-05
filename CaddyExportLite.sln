@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaddyExportLite", "CaddyExportLite\CaddyExportLite.csproj", "{B0ADBC9E-1474-4E06-AF82-47FD84079196}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaddyExportLite.Transport", "CaddyExportLite.Transport\CaddyExportLite.Transport.csproj", "{B0ADBC9E-1474-4E06-AF82-47FD84079196}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaddyExportLite.Tests", "CaddyExportLite.Tests\CaddyExportLite.Tests.csproj", "{39271EF6-5921-4A92-B887-B1976E381F7D}"
 EndProject

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CaddyExportLite.Client;
+using CaddyExportLite.Transport.Client;
 
-namespace CaddyExportLite.Client
+namespace CaddyExportLite.Transport.Client
 {
     class Program
     {

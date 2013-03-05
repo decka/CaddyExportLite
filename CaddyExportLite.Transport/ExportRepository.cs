@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using Dapper;
 
-namespace CaddyExportLite
+namespace CaddyExportLite.Transport
 {
     public class SQLExportRepository : IExportRepository
     {

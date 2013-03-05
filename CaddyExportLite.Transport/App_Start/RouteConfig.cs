@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace CaddyExportLite
+namespace CaddyExportLite.Transport
 {
     public class RouteConfig
     {
