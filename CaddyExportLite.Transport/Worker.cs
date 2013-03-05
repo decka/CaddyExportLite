@@ -7,6 +7,8 @@ using SignalR;
 using SignalR.Hubs;
 using Ninject;
 
+using CaddyExportLite.Domain;
+
 namespace CaddyExportLite.Transport
 {
     public class Worker : ICanMarkExportAsComplete

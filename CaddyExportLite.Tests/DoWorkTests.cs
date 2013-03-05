@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using System.Data;
 using CaddyExportLite.Transport;
+using CaddyExportLite.Domain;
 using SignalR.Hubs;
 using SignalR;
 using Moq;
@@ -22,7 +23,7 @@ namespace CaddyExportLite.Transport.Tests
             string connectionString = @"Data Source=sqlsvr4.apexhost.net.au;Initial Catalog=construc_1;User ID=construc_usr;";
             IDbConnection dbconnection = new System.Data.SqlClient.SqlConnection(connectionString);
 
-            IExportRepository aExportHandler = new SQLExportRepository(dbconnection);
+            IExportRepository aExportHandler = new ExportRepository(dbconnection);
             IConnectionManager aConnectionManager = new ConnectionManager();
             ICanSendStringToClient aStringSender = new ConsoleStringSender();
 

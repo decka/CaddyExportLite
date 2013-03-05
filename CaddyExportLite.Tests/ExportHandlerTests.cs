@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using System.Data;
+using CaddyExportLite.Domain;
 
 namespace CaddyExportLite.Transport.Tests
 {
@@ -19,7 +20,7 @@ namespace CaddyExportLite.Transport.Tests
             //string connectionString = @"Server=(LocalDB)\v11.0;Integrated Security=true;AttachDbFileName=E:\CaddyDatabase.mdf";
             IDbConnection dbconnection = new System.Data.SqlClient.SqlConnection(connectionString);
 
-            var componentUnderTest = new SQLExportRepository(dbconnection);
+            var componentUnderTest = new ExportRepository(dbconnection);
 
             // Act
             var results = componentUnderTest.FetchExportStringsForID(13);
@@ -35,7 +36,7 @@ namespace CaddyExportLite.Transport.Tests
             string connectionString = @"Data Source=sqlsvr4.apexhost.net.au;Initial Catalog=construc_1;User ID=construc_usr;Password=v6x^M89;";
             IDbConnection dbconnection = new System.Data.SqlClient.SqlConnection(connectionString);
 
-            var componentUnderTest = new SQLExportRepository(dbconnection);
+            var componentUnderTest = new ExportRepository(dbconnection);
 
             // Act
             var results = componentUnderTest.FetchExportListing();

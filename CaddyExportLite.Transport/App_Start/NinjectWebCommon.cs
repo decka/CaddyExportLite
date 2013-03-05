@@ -12,6 +12,7 @@ namespace CaddyExportLite.Transport.App_Start
     using Ninject.Web.Common;
     using System.Data;
     using System.Data.SqlClient;
+    using CaddyExportLite.Domain;
 
     public static class NinjectWebCommon 
     {
@@ -59,7 +60,7 @@ namespace CaddyExportLite.Transport.App_Start
             if (connectionString != null)
             {
                 kernel.Bind<IDbConnection>().To<SqlConnection>().InSingletonScope().WithConstructorArgument("connectionString", connectionString);
-                kernel.Bind<IExportRepository>().To<SQLExportRepository>().InSingletonScope();
+                kernel.Bind<IExportRepository>().To<ExportRepository>().InSingletonScope();
                 kernel.Bind<IConnectionManager>().To<ConnectionManager>().InSingletonScope();
                 kernel.Bind<ICanSendStringToClient>().To<HubStringSender>().InSingletonScope();
                 kernel.Bind<ICanMarkExportAsComplete>().To<Worker>().InSingletonScope();
