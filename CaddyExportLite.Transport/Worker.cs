@@ -7,7 +7,7 @@ using SignalR;
 using SignalR.Hubs;
 using Ninject;
 
-using CaddyExportLite.Domain;
+using CaddyExportLite.DAL;
 
 namespace CaddyExportLite.Transport
 {

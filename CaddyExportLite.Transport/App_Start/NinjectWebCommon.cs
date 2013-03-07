@@ -12,7 +12,7 @@ namespace CaddyExportLite.Transport.App_Start
     using Ninject.Web.Common;
     using System.Data;
     using System.Data.SqlClient;
-    using CaddyExportLite.Domain;
+    using CaddyExportLite.DAL;
 
     public static class NinjectWebCommon 
     {

@@ -186,6 +186,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CaddyExportLite.DAL\CaddyExportLite.DAL.csproj">
+      <Project>{ac13d24d-6a3e-4807-8cec-6bf30df4d001}</Project>
+      <Name>CaddyExportLite.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CaddyExportLite.Domain\CaddyExportLite.Domain.csproj">
       <Project>{7f30cf3b-de52-412e-bc07-d7ff9880ed38}</Project>
       <Name>CaddyExportLite.Domain</Name>
