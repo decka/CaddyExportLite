@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaddyExportLite.Domain", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaddyExportLite.DAL", "CaddyExportLite.DAL\CaddyExportLite.DAL.csproj", "{AC13D24D-6A3E-4807-8CEC-6BF30DF4D001}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaddyExportLite.Domain.Test", "CaddyExportLite.Domain.Test\CaddyExportLite.Domain.Test.csproj", "{5A53AC6E-DEDA-4EBE-B54C-F41E1923D520}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{AC13D24D-6A3E-4807-8CEC-6BF30DF4D001}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC13D24D-6A3E-4807-8CEC-6BF30DF4D001}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC13D24D-6A3E-4807-8CEC-6BF30DF4D001}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A53AC6E-DEDA-4EBE-B54C-F41E1923D520}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A53AC6E-DEDA-4EBE-B54C-F41E1923D520}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A53AC6E-DEDA-4EBE-B54C-F41E1923D520}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A53AC6E-DEDA-4EBE-B54C-F41E1923D520}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
