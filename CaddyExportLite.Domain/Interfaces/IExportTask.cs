@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace CaddyExportLite.Domain.Interfaces
 {
-    public interface IExportType
+    public interface IExportTask
     {
-        public int GetID();
+        int ExportID { get; }
+        int CaddyID { get; }
+        int TaskID { get; }
     }
 }

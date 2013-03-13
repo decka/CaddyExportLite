@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CaddyExportLite.Domain;
 using NUnit.Framework;
+using CaddyExportLite.Domain.Interfaces;
 
 namespace CaddyExportLite.DomainTest
 {
@@ -12,39 +13,23 @@ namespace CaddyExportLite.DomainTest
     class ExportTaskTest
     {
         [Test]
-        public void GetExportTypeReturnsAssignedValue()
+        public void GetTaskIDFromDerivedReturnsPurchaseIDforPurchaseType()
         {
             //Arrange
-            var sut = new ExportTask();
-            var type = new ExportType();
+            var sut = new PurchaseTask(0, 0, 1);
             //Act
-            sut.TaskType = type;
             //Assert
-            Assert.AreEqual(sut.TaskType, type);
+            Assert.AreEqual(sut.TaskID, 1);
         }
-
         [Test]
-        public void GetCaddyGUIDReturnsAssignedValue()
+        public void GetTaskIDFromBaseReturnsPurchaseIDforPurchaseType()
         {
             //Arrange
-            var sut = new ExportTask();
-            var testGUID = Guid.Parse("2e5ed860-82fe-4d65-9f39-94651c105159");
+            var derived = new PurchaseTask(0, 0, 1);
+            IExportTask sut = derived;
             //Act
-            sut.CaddyGUID = testGUID;
             //Assert
-            Assert.AreEqual(sut.CaddyGUID, testGUID);
-        }
-
-        [Test]
-        public void GetCaddyGUIDReturnsAssignedValue2()
-        {
-            //Arrange
-            var sut = new ExportTask();
-            var testGUID = Guid.Parse("11c9bdf5-aa85-4d16-bc44-1b99aefe7c1c");
-            //Act
-            sut.CaddyGUID = testGUID;
-            //Assert
-            Assert.AreEqual(sut.CaddyGUID, testGUID);
+            Assert.AreEqual(sut.TaskID, 1);
         }
     }
 }
