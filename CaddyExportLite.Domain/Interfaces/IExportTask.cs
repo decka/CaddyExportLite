@@ -8,8 +8,8 @@ namespace CaddyExportLite.Domain.Interfaces
 {
     public interface IExportTask
     {
+        IEnumerable<string> GetExportStrings();
         int ExportID { get; }
         int CaddyID { get; }
-        int TaskID { get; }
     }
 }

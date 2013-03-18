@@ -20,9 +20,9 @@ namespace CaddyExportLite.DAL
         {
             return Connection.Query("dbo.ExportTask_Listing", new { @HideCompleted = 0 }, commandType: CommandType.StoredProcedure);
         }
-        public IEnumerable<string> FetchExportStringsForID(int ID)
+        public IEnumerable<string> FetchPurchaseExportStringsForPurchaseID(int PurchaseID)
         {
-            return Connection.Query<string>("dbo.Export_MYOB_Purchases_Misc", new { @ID = ID }, commandType: CommandType.StoredProcedure);
+            return Connection.Query<string>("dbo.Export_MYOB_Purchases_Misc", new { @ID = PurchaseID }, commandType: CommandType.StoredProcedure);
         }
         public void MarkExportAsComplete(int exportID, string result)
         {

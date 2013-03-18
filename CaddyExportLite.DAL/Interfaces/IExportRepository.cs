@@ -9,7 +9,7 @@ namespace CaddyExportLite.DAL
     public interface IExportRepository
     {
         IEnumerable<dynamic> FetchExportListing();
-        IEnumerable<string> FetchExportStringsForID(int ID);
+        IEnumerable<string> FetchPurchaseExportStringsForPurchaseID(int PurchaseID);
         void MarkExportAsComplete(int exportID, string result);
     }
 }
