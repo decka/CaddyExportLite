@@ -75,7 +75,7 @@ namespace CaddyExportLite.DomainTest
         {
             //Arrange
             var exportStub = new Mock<IExportRepository>();
-            exportStub.Setup(_ => _.FetchPurchaseExportStringsForPurchaseID(It.IsAny<int>())).Returns(new List<string> { "Test", "Test2" } );
+            exportStub.Setup(_ => _.FetchPurchaseExportStrings(It.IsAny<int>())).Returns(new List<string> { "Test", "Test2" } );
             var sut = new PurchaseTask(ExportID: 0, CaddyID: 0, PurchaseID: 1, Repo: exportStub.Object);
             //Act
             var strings = sut.GetExportStrings();
@@ -87,7 +87,7 @@ namespace CaddyExportLite.DomainTest
         {
             //Arrange
             var exportStub = new Mock<IExportRepository>();
-            exportStub.Setup(_ => _.FetchPurchaseExportStringsForPurchaseID(It.IsAny<int>())).Returns(new List<string> { "Test", "Test2" });
+            exportStub.Setup(_ => _.FetchPurchaseExportStrings(It.IsAny<int>())).Returns(new List<string> { "Test", "Test2" });
             var sut = new PurchaseTask(ExportID: 0, CaddyID: 0, PurchaseID: 1, Repo: exportStub.Object);
             //Act
             var strings = sut.GetExportStrings();
@@ -99,7 +99,7 @@ namespace CaddyExportLite.DomainTest
         {
             //Arrange
             var exportStub = new Mock<IExportRepository>();
-            exportStub.Setup(_ => _.FetchPurchaseExportStringsForPurchaseID(It.IsAny<int>())).Returns(new List<string>());
+            exportStub.Setup(_ => _.FetchPurchaseExportStrings(It.IsAny<int>())).Returns(new List<string>());
             var sut = new PurchaseTask(ExportID: 0, CaddyID: 0, PurchaseID: 1, Repo: exportStub.Object);
             //Act
             var strings = sut.GetExportStrings();

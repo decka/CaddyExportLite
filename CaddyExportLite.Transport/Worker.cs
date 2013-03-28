@@ -56,7 +56,7 @@ namespace CaddyExportLite.Transport
                 {
                     if (aConnectionManager.IsCaddyIDConnected((int)ExportRecord.CaddyID))
                     {
-                        var ExportStringsForClient = aExportHandler.FetchPurchaseExportStringsForPurchaseID((int)ExportRecord.taskid);
+                        var ExportStringsForClient = aExportHandler.FetchPurchaseExportStrings((int)ExportRecord.taskid);
 
                         foreach (var SingleExportString in ExportStringsForClient)
                         {

@@ -17,7 +17,7 @@ namespace CaddyExportLite.Domain
         {
             if (PurchaseID > 0)
             {
-                return base.Repo.FetchPurchaseExportStringsForPurchaseID(PurchaseID);
+                return base.Repo.FetchPurchaseExportStrings(PurchaseID);
             }
             else
             {

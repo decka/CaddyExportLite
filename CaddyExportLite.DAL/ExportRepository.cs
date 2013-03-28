@@ -20,7 +20,7 @@ namespace CaddyExportLite.DAL
         {
             return Connection.Query("dbo.ExportTask_Listing", new { @HideCompleted = 0 }, commandType: CommandType.StoredProcedure);
         }
-        public IEnumerable<string> FetchPurchaseExportStringsForPurchaseID(int PurchaseID)
+        public IEnumerable<string> FetchPurchaseExportStrings(int PurchaseID)
         {
             return Connection.Query<string>("dbo.Export_MYOB_Purchases_Misc", new { @ID = PurchaseID }, commandType: CommandType.StoredProcedure);
         }
